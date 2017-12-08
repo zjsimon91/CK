@@ -13,7 +13,7 @@
 
     <title>CryptoKittydex</title>
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="b/IoafjfKAsyYqgPOQUxQSIU4TRI2Pl+lo8ZuXE1DuqWPigvf+2IbtYMwCA/S4yv4F1xSoNVVTYV9ESstAxRXQ==" />
+<meta name="csrf-token" content="DvRYckHKyUbvdrPOeX+PzxVyzJqYksuNuvxvC7fempzpkv7P5i7qWUD2PJiNfdoOZMpagsH61I9tAmxkQN30jA==" />
 
     <link rel="stylesheet" media="all" href="/assets/application-53bf447a429375074cc91d132d002a8cef003129539f7d01fb55754fb42479b6.css" data-turbolinks-track="reload" />
     <script src="/assets/application-0190125a66b7ffb0ad03749fd4771ff88cbda01704296bbe692599ead21dfc03.js" data-turbolinks-track="reload"></script>
@@ -118,7 +118,7 @@
         <li>Born: December  7, 2017 at  7:23 PM UTC</li>
         <li>
           Generation:
-          <a data-toggle="tooltip" data-title="All else equal, a Gen-7 kitty usually sells for 0.1 ETH" href="/gen/7">7</a>
+          <a data-toggle="tooltip" data-title="All else equal, a Gen-7 kitty usually sells for 0.104 ETH" href="/gen/7">7</a>
         </li>
       <!-- <li>Last birth at: </li> -->
       <!-- <li>Last siring at: </li> -->
@@ -330,14 +330,14 @@
           <br/>
           Cattributes
           <br/>
-            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.218 ETH" href="/cattributes/cymric">cymric</a>
-            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.092 ETH" href="/cattributes/simple">simple</a>
-            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.298 ETH" href="/cattributes/orangesoda">orangesoda</a>
-            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.122 ETH" href="/cattributes/granitegrey">granitegrey</a>
-            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.182 ETH" href="/cattributes/calicool">calicool</a>
-            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.196 ETH" href="/cattributes/saycheese">saycheese</a>
-            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.186 ETH" href="/cattributes/strawberry">strawberry</a>
-            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.217 ETH" href="/cattributes/coffee">coffee</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.204 ETH" href="/cattributes/cymric">cymric</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.413 ETH" href="/cattributes/orangesoda">orangesoda</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.09 ETH" href="/cattributes/simple">simple</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.256 ETH" href="/cattributes/granitegrey">granitegrey</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.099 ETH" href="/cattributes/calicool">calicool</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.211 ETH" href="/cattributes/coffee">coffee</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.203 ETH" href="/cattributes/saycheese">saycheese</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.157 ETH" href="/cattributes/strawberry">strawberry</a>
       </li>
     </ul>
     <br/>

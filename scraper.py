@@ -36,10 +36,13 @@ class KittyScratcher:
 
         geneList = soup.find('ul',class_ = "list-unstyled list-inline list-genes")
         geneList = [clean(each.text) for each in geneList.findAll('li')]
-        print len(geneList)
+        
+
+
 
 
 
 if __name__ == "__main__":
     ks = KittyScratcher()
     print ks.getInfo(1)
+   #with open("test.txt","w") as f: f.write(ks.getSite(19021))
