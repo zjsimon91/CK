@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109422916-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-109422916-1');
+    </script>
+
+    <title>CryptoKittydex</title>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="b/IoafjfKAsyYqgPOQUxQSIU4TRI2Pl+lo8ZuXE1DuqWPigvf+2IbtYMwCA/S4yv4F1xSoNVVTYV9ESstAxRXQ==" />
+
+    <link rel="stylesheet" media="all" href="/assets/application-53bf447a429375074cc91d132d002a8cef003129539f7d01fb55754fb42479b6.css" data-turbolinks-track="reload" />
+    <script src="/assets/application-0190125a66b7ffb0ad03749fd4771ff88cbda01704296bbe692599ead21dfc03.js" data-turbolinks-track="reload"></script>
+    <script src="/packs/hello_vue-8b4ee2acd3e079a0fe4b.js"></script>
+    <script src="/packs/auth_vue-d76ec9d899fa3a60eb0e.js"></script>
+    <link rel='shortcut icon' type='image/x-icon' href='https://d92r0epdbsmys.cloudfront.net/icons/favicon.ico'/>
+  </head>
+
+  <body>
+    <div class="modal" id="modal-auth" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Sign in with MetaMask</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id='vue-auth'>
+              <app></app>
+            </div>
+
+            <script>
+              window.addEventListener('load', function() {
+                if (typeof web3 !== 'undefined') {
+                  console.log("Using MetaMask's web3")
+                  app.web3 = new Web3(web3.currentProvider)
+                } else {
+                  console.log('No web3? You should consider trying MetaMask!')
+                }
+              })
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+      <a class="navbar-brand" href="/">CryptoKittydex</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Map the Genome
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/kitties/fancy">Fancy kitties</a>
+              <a class="dropdown-item" href="/kitties/dank">Rare kitties</a>
+              <a class="dropdown-item" href="/kitties/random">Random kitteh</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cattributes">Cattributes</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right ml-auto">
+        </ul>
+      </div>
+    </nav>
+
+
+    <div class="container-fluid">
+      <p id="notice"></p>
+
+<script src="/packs/hello_vue-8b4ee2acd3e079a0fe4b.js"></script>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="affix" style="width:290px">
+      <div class="kitty-container">
+        <!-- <h3 class="text-center">134474</h4> -->
+        <a id="kitty-134474" class="kitty" style="background-image:url(https://d92r0epdbsmys.cloudfront.net/kitty-images-prod/134474.svg);background-color:#fcdedf" data-kitty="{&quot;ck_id&quot;:134474,&quot;genes&quot;:&quot;0x000042d0c310e648dc97392a014a5210e43210c1942331485308677a5885adc9&quot;,&quot;image_name&quot;:&quot;134474.svg&quot;}" href="/kitties/134474">
+
+  <div class="pane-compare">
+    <h3>Isolate Genes
+      <i class="fa fa-question-circle icon-help" data-toggle="tooltip" data-title="Isolate the gene(s) associated with a particular characteristic by <em>intersecting</em> kitties that share the trait and <em>subtracting</em> kitties that don't."></i>
+    </h3>
+
+    <div class="btn-group btn-block" data-toggle="buttons">
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="true" /> INTERSECT
+      </label>
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="false" /> SUBTRACT
+      </label>
+    </div>
+  </div>
+</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <h3>Kitty #134474</h3>
+    <ul class="list-unstyled">
+      <li>Owner: <a href="/owners/0x8c2d61dc1b5cf20f43c2a2435854149611be1766">0x8c2d61dc1b5cf20f43c2a2435854149611be1766</a></li>
+        <li>Born: December  7, 2017 at  7:23 PM UTC</li>
+        <li>
+          Generation:
+          <a data-toggle="tooltip" data-title="All else equal, a Gen-7 kitty usually sells for 0.1 ETH" href="/gen/7">7</a>
+        </li>
+      <!-- <li>Last birth at: </li> -->
+      <!-- <li>Last siring at: </li> -->
+      <!-- <li>Siring count: </li> -->
+        <li>Block number: <a href="https://etherscan.io/block/4692492">0x479a0c</a></li>
+        <li>Block hash: 0x43471d9eed3bfbbc3eef2b6d949ba77f87a63d249507aa140d35c76d10060431</li>
+      <li>Official profile: <a target="_blank" href="https://cryptokitties.co/kitty/134474">CryptoKitty #134474</a></li>
+      <li>
+        <br/>
+        Genes
+        <br/>
+        <ul class="list-unstyled list-inline list-genes">
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="63">
+      <a href="/genes/63/0">0</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="62">
+      <a href="/genes/62/0">0</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="61">
+      <a href="/genes/61/0">0</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="60">
+      <a href="/genes/60/0">0</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="59">
+      <a href="/genes/59/4">4</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="58">
+      <a href="/genes/58/2">2</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="57">
+      <a href="/genes/57/d">d</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="56">
+      <a href="/genes/56/0">0</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="55">
+      <a href="/genes/55/c">c</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="54">
+      <a href="/genes/54/3">3</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="53">
+      <a href="/genes/53/1">1</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="52">
+      <a href="/genes/52/0">0</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="51">
+      <a href="/genes/51/e">e</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="50">
+      <a href="/genes/50/6">6</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="49">
+      <a href="/genes/49/4">4</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="48">
+      <a href="/genes/48/8">8</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="47">
+      <a href="/genes/47/d">d</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="46">
+      <a href="/genes/46/c">c</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="45">
+      <a href="/genes/45/9">9</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="44">
+      <a href="/genes/44/7">7</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="43">
+      <a href="/genes/43/3">3</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="42">
+      <a href="/genes/42/9">9</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="41">
+      <a href="/genes/41/2">2</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="40">
+      <a href="/genes/40/a">a</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="39">
+      <a href="/genes/39/0">0</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="38">
+      <a href="/genes/38/1">1</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="37">
+      <a href="/genes/37/4">4</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="36">
+      <a href="/genes/36/a">a</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="35">
+      <a href="/genes/35/5">5</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="34">
+      <a href="/genes/34/2">2</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="33">
+      <a href="/genes/33/1">1</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="32">
+      <a href="/genes/32/0">0</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="31">
+      <a href="/genes/31/e">e</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="30">
+      <a href="/genes/30/4">4</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="29">
+      <a href="/genes/29/3">3</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="28">
+      <a href="/genes/28/2">2</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="27">
+      <a href="/genes/27/1">1</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="26">
+      <a href="/genes/26/0">0</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="25">
+      <a href="/genes/25/c">c</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="24">
+      <a href="/genes/24/1">1</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="23">
+      <a href="/genes/23/9">9</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="22">
+      <a href="/genes/22/4">4</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="21">
+      <a href="/genes/21/2">2</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="20">
+      <a href="/genes/20/3">3</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="19">
+      <a href="/genes/19/3">3</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="18">
+      <a href="/genes/18/1">1</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="17">
+      <a href="/genes/17/4">4</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="16">
+      <a href="/genes/16/8">8</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="15">
+      <a href="/genes/15/5">5</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="14">
+      <a href="/genes/14/3">3</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="13">
+      <a href="/genes/13/0">0</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="12">
+      <a href="/genes/12/8">8</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="11">
+      <a href="/genes/11/6">6</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="10">
+      <a href="/genes/10/7">7</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="9">
+      <a href="/genes/9/7">7</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="8">
+      <a href="/genes/8/a">a</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="7">
+      <a href="/genes/7/5">5</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="6">
+      <a href="/genes/6/8">8</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="5">
+      <a href="/genes/5/8">8</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="4">
+      <a href="/genes/4/5">5</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="3">
+      <a href="/genes/3/a">a</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="2">
+      <a href="/genes/2/d">d</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="1">
+      <a href="/genes/1/c">c</a>
+    </li>
+    <li class="gene list-inline-item" data-toggle="tooltip" data-title="Click to see other kitties with this gene" xdata-toggle="popover" data-gene-index="0">
+      <a href="/genes/0/9">9</a>
+    </li>
+</ul>
+
+      </li>
+      <li>
+          <br/>
+          Cattributes
+          <br/>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.218 ETH" href="/cattributes/cymric">cymric</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.092 ETH" href="/cattributes/simple">simple</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.298 ETH" href="/cattributes/orangesoda">orangesoda</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.122 ETH" href="/cattributes/granitegrey">granitegrey</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.182 ETH" href="/cattributes/calicool">calicool</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.196 ETH" href="/cattributes/saycheese">saycheese</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.186 ETH" href="/cattributes/strawberry">strawberry</a>
+            <a class="badge badge-pill badge-cattribute badge-big cattribute" data-toggle="tooltip" data-title="A kitty exhibiting this cattribute usually sells for 0.217 ETH" href="/cattributes/coffee">coffee</a>
+      </li>
+    </ul>
+    <br/>
+    <br/>
+
+    <h4>Sale history</h4>
+      <table class="table">
+          <tr>
+            <td>
+                Sold for 0.08 ETH
+            </td>
+            <td class="text-muted">
+                Dec. 7, 2017,  7:35 PM UTC
+            </td>
+          </tr>
+      </table>
+    <br/>
+    <br/>
+
+    <h4>Parents</h4>
+      <a id="kitty-42264" class="kitty" style="background-image:url(https://d92r0epdbsmys.cloudfront.net/kitty-images-prod/42264.png);background-color:#fcdedf" data-kitty="{&quot;ck_id&quot;:42264,&quot;genes&quot;:&quot;0x000042108390a5098c6439f729403398c65adad00d4529ca739c474a52963189&quot;,&quot;image_name&quot;:&quot;42264.png&quot;}" href="/kitties/42264">
+
+  <div class="pane-compare">
+    <h3>Isolate Genes
+      <i class="fa fa-question-circle icon-help" data-toggle="tooltip" data-title="Isolate the gene(s) associated with a particular characteristic by <em>intersecting</em> kitties that share the trait and <em>subtracting</em> kitties that don't."></i>
+    </h3>
+
+    <div class="btn-group btn-block" data-toggle="buttons">
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="true" /> INTERSECT
+      </label>
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="false" /> SUBTRACT
+      </label>
+    </div>
+  </div>
+    <div class="kitty-number">42264</div>
+</a>
+      <a id="kitty-136611" class="kitty" style="background-image:url(https://d92r0epdbsmys.cloudfront.net/kitty-images-prod/136611.svg);background-color:#fcdedf" data-kitty="{&quot;ck_id&quot;:136611,&quot;genes&quot;:&quot;0x000062508310c61a4c373d0f1806031847721cd098aa3166639c477dd294a969&quot;,&quot;image_name&quot;:&quot;136611.svg&quot;}" href="/kitties/136611">
+
+  <div class="pane-compare">
+    <h3>Isolate Genes
+      <i class="fa fa-question-circle icon-help" data-toggle="tooltip" data-title="Isolate the gene(s) associated with a particular characteristic by <em>intersecting</em> kitties that share the trait and <em>subtracting</em> kitties that don't."></i>
+    </h3>
+
+    <div class="btn-group btn-block" data-toggle="buttons">
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="true" /> INTERSECT
+      </label>
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="false" /> SUBTRACT
+      </label>
+    </div>
+  </div>
+    <div class="kitty-number">136611</div>
+</a>
+      <br/>
+      <br/>
+
+
+    <h4>Bebehs</h4>
+    <p>
+      This kitty has 4 bebehs
+    </p>
+
+      <li class="text-center list-inline-item">
+    <a id="kitty-135846" class="kitty" style="background-image:url(https://d92r0epdbsmys.cloudfront.net/kitty-images-prod/135846.svg);background-color:#fcdedf" data-kitty="{&quot;ck_id&quot;:135846,&quot;genes&quot;:&quot;0x00005ad0b310e6724295392a00ca0310e43290b1842529a65308477bd0e5b576&quot;,&quot;image_name&quot;:&quot;135846.svg&quot;}" href="/kitties/135846">
+
+  <div class="pane-compare">
+    <h3>Isolate Genes
+      <i class="fa fa-question-circle icon-help" data-toggle="tooltip" data-title="Isolate the gene(s) associated with a particular characteristic by <em>intersecting</em> kitties that share the trait and <em>subtracting</em> kitties that don't."></i>
+    </h3>
+
+    <div class="btn-group btn-block" data-toggle="buttons">
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="true" /> INTERSECT
+      </label>
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="false" /> SUBTRACT
+      </label>
+    </div>
+  </div>
+    <div class="kitty-number">135846</div>
+</a>
+  </li>
+  <li class="text-center list-inline-item">
+    <a id="kitty-132113" class="kitty" style="background-image:url(https://d92r0epdbsmys.cloudfront.net/kitty-images-prod/132113.svg);background-color:#faf5cf" data-kitty="{&quot;ck_id&quot;:132113,&quot;genes&quot;:&quot;0x00004a52c39c86484234a529194ac3188273914298c0318c7314a1639cf6256d&quot;,&quot;image_name&quot;:&quot;132113.svg&quot;}" href="/kitties/132113">
+
+  <div class="pane-compare">
+    <h3>Isolate Genes
+      <i class="fa fa-question-circle icon-help" data-toggle="tooltip" data-title="Isolate the gene(s) associated with a particular characteristic by <em>intersecting</em> kitties that share the trait and <em>subtracting</em> kitties that don't."></i>
+    </h3>
+
+    <div class="btn-group btn-block" data-toggle="buttons">
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="true" /> INTERSECT
+      </label>
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="false" /> SUBTRACT
+      </label>
+    </div>
+  </div>
+    <div class="kitty-number">132113</div>
+</a>
+  </li>
+  <li class="text-center list-inline-item">
+    <a id="kitty-141395" class="kitty" style="background-image:url(https://d92r0epdbsmys.cloudfront.net/kitty-images-prod/141395.svg);background-color:#d9f5cc" data-kitty="{&quot;ck_id&quot;:141395,&quot;genes&quot;:&quot;0x00004a58c312734a5c97394901405110c6321cb284a3298a639ce37a5285adc9&quot;,&quot;image_name&quot;:&quot;141395.svg&quot;}" href="/kitties/141395">
+
+  <div class="pane-compare">
+    <h3>Isolate Genes
+      <i class="fa fa-question-circle icon-help" data-toggle="tooltip" data-title="Isolate the gene(s) associated with a particular characteristic by <em>intersecting</em> kitties that share the trait and <em>subtracting</em> kitties that don't."></i>
+    </h3>
+
+    <div class="btn-group btn-block" data-toggle="buttons">
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="true" /> INTERSECT
+      </label>
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="false" /> SUBTRACT
+      </label>
+    </div>
+  </div>
+    <div class="kitty-number">141395</div>
+</a>
+  </li>
+  <li class="text-center list-inline-item">
+    <a id="kitty-145677" class="kitty" style="background-image:url(https://d92r0epdbsmys.cloudfront.net/kitty-images-prod/145677.svg);background-color:#d9f5cc" data-kitty="{&quot;ck_id&quot;:145677,&quot;genes&quot;:&quot;0x00005a10c292734b9237252a00ca311c86419cc50c61298a538ce3631285b1c9&quot;,&quot;image_name&quot;:&quot;145677.svg&quot;}" href="/kitties/145677">
+
+  <div class="pane-compare">
+    <h3>Isolate Genes
+      <i class="fa fa-question-circle icon-help" data-toggle="tooltip" data-title="Isolate the gene(s) associated with a particular characteristic by <em>intersecting</em> kitties that share the trait and <em>subtracting</em> kitties that don't."></i>
+    </h3>
+
+    <div class="btn-group btn-block" data-toggle="buttons">
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="true" /> INTERSECT
+      </label>
+      <label class="btn btn-outline-secondary btn-compare">
+        <input type="radio" value="false" /> SUBTRACT
+      </label>
+    </div>
+  </div>
+    <div class="kitty-number">145677</div>
+</a>
+  </li>
+
+
+    <br/>
+    <br/>
+
+
+<!--     <h4>Binary</h4>
+    <table class="math">
+      <tr>
+        <td></td>
+        <td>
+          n/a
+        </td>
+      </tr>
+      <tr>
+        <td>+&nbsp;</td>
+        <td>
+          n/a
+        </td>
+      </tr>
+      <tr>
+        <td>=&nbsp;</td>
+        <td>
+          0000000000000000010000101101000011000011000100001110011001001000110111001001011100111001001010100000000101001010010100100001000011100100001100100001000011000001100101000010001100110001010010000101001100001000011001110111101001011000100001011010110111001001
+        </td>
+      </tr>
+    </table>
+ -->
+    <h3>Clones</h3>
+    <ul>
+      <li>
+        <a href="/genes/0x000042d0c310e648dc97392a014a5210e43210c1942331485308677a5885adc9">DNA clones</a> -
+        CryptoKitties with the exact same DNA sequence
+      </li>
+        <li>
+          <a href="/pixels/0x1ec0958b9a4d612ad10d56dc6d0f010397531d55">Pixel clones</a> -
+          CryptoKitties with the exact same visual appearance
+        </li>
+    </ul>
+
+    <h3>Similar Kittehs</h3>
+      <p>
+        Kittehs with very similar DNA - none found.
+      </p>
+  </div>
+</div>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<!-- room to scroll -->
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <strong>Mew</strong>
+        <a href="https://twitter.com/cryptokittydex" target="_blank">@cryptokittydex</a>
+
+        <div class="pull-right">
+          <span data-toggle="tooltip" data-title="ETH and kitties gladly accepted >^.^<" class="tooltip-wide">0x40D7C5FBC89C0Ca3880d79e38e5099D786f4AB65</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      window.kittiesCentrifuge = []
+
+      $( document ).on('turbolinks:load', function() {
+        var GENE_NOTES = {"0":"\u003cp\u003emouth\u003c/p\u003e\n\n\u003cp\u003e1: tongue\n\u003cbr /\u003e3: fangs\n\u003c/p\u003e","5":"\u003cp\u003eeyes\u003c/p\u003e\n\n\u003cp\u003e1: right pupil smaller than left\n\u003cbr /\u003e2: angled with lashes\n\u003cbr /\u003e3: frowny\n\u003cbr /\u003e4: sparklemotion\n\u003cbr /\u003e7: nervous brows\n\u003cbr /\u003e8: angled\n\u003c/p\u003e","15":"\u003cp\u003ehead hair.\u003c/p\u003e\n\n\u003cp\u003e0: normal\n\u003cbr /\u003e1: spiky\u003c/p\u003e\n\n\u003cp\u003ein the cases of 4886 and 4888, a value of 1 gives both spiky hair and a gray coat.\n\u003c/p\u003e","30":"\u003cp\u003etail\u003c/p\u003e\n\n\u003cp\u003e1: no tail\n\u003c/p\u003e"}
+
+        $('body').popover({
+          container: 'body',
+          content: function () {
+            if ($(this).text() === '_') {
+              return 'This gene appears to be irrelevant'
+            }
+            else {
+              var notes = GENE_NOTES[parseInt($(this).data('gene-index'))]
+              return notes ? notes : "This gene is relevant, but needs research. Try to document it!"
+            }
+          },
+          html: true,
+          placement: 'top',
+          selector: '[data-toggle="popover"]',
+          title: function () {
+            return "Gene #" + $(this).data('gene-index')
+          },
+          trigger: 'hover'
+        })
+
+        $('body').tooltip({
+          container: 'body',
+          html: true,
+          placement: 'top',
+          selector: '[data-toggle="tooltip"]',
+          trigger: 'hover'
+        }).on('hidden.bs.tooltip', function (e) {
+          // Reset tooltip to original value
+          $(e.target).attr('data-original-title', $(e.target).data('title'))
+        })
+
+        $('.kitty').on('click', '.btn-compare', function () {
+          var kitty = $(this).closest('.kitty').data('kitty')
+
+          // De-select
+          if ($(this).hasClass('active')) {
+            setTimeout(function () {
+              $(this).removeClass('active').find('input[type=radio]').prop('checked', false);
+              window.compareKitties.remove(kitty)
+              $(this).closest('.pane-compare').removeClass('active')
+            }.bind(this), 10)
+            return
+          }
+
+          kitty.attract = $(this).find('input[type=radio]').val()
+          window.compareKitties.compare(kitty)
+          $(this).closest('.pane-compare').addClass('active')
+        })
+      })
+    </script>
+  </body>
+</html>
