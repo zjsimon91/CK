@@ -1,0 +1,5 @@
+SELECT
+  digit,
+  x,y,sum(value=1)/count(1) prob,count(1)
+FROM crypto.heritage
+GROUP BY 1,2,3;

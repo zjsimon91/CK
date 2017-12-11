@@ -1,0 +1,35 @@
+DROP TABLE IF EXISTS tmp_g;
+CREATE TEMPORARY TABLE tmp_g
+(
+  INDEX a (id, digit)
+)
+    SELECT
+      c.id,
+      g.digit,
+      g.value,
+      c.parent_x,
+      c.parent_y
+    FROM (SELECT *
+          FROM crypto.cat
+          WHERE generation > 0
+                AND parent_x <> 0 AND parent_y <> 0
+          LIMIT 1000) c
+      INNER JOIN crypto.genetics g
+        ON c.id = g.cat_id;
+
+
+DROP TABLE IF EXISTS crypto.heritage;
+CREATE TABLE crypto.heritage
+    SELECT
+      c.id,
+      c.digit,
+      c.value,
+      p_a.value AS x,
+      p_b.value AS y
+    FROM tmp_g c
+      INNER JOIN crypto.genetics p_a
+        ON c.parent_x = p_a.cat_id
+           AND c.digit = p_a.digit
+      INNER JOIN crypto.genetics p_b
+        ON c.parent_y = p_b.cat_id
+           AND c.digit = p_b.digit;

@@ -1,0 +1,17 @@
+SELECT count(1)
+FROM (
+       SELECT parent_x AS parent
+       FROM crypto.cat
+       UNION SELECT parent_y
+             FROM crypto.cat
+     ) AS p
+  LEFT JOIN crypto.cat c
+    ON p.parent = c.id
+WHERE parent <> 0 AND c.id IS NULL;
+
+SELECT count(1)
+FROM crypto.cat c
+  INNER JOIN crypto.cat p_a
+    ON c.parent_x = p_a.id
+  INNER JOIN crypto.cat p_b
+    ON c.parent_y = p_b.id;
