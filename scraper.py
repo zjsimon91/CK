@@ -2,6 +2,8 @@ from bs4 import BeautifulSoup
 import requests,re,os,time,json,pprint,itertools,pandas as pd,datetime
 from random import *
 from mysqlConn import MySqlConn
+from selenium import webdriver
+
 
 def iter_grouper(n, iterable):
     it = iter(iterable)
@@ -131,16 +133,16 @@ class KittyScratcher:
         for each in cats:
             self.savePage(each)
 
-    def scrapeMarketPlace(self,pages=1):
-        headers = {
-            'User-Agent': userAgent(),
-            'From': 'youremail@domain.com'  # This is another valid field
-        }
-
+    def scrapeMarketPlace(self,pages=3):
+        driver = webdriver.Chrome(executable_path=r'/Users/admin/Desktop/PythonWork/chromedriver')
         cats = []
         for i in range(1,pages+1):
-            url = "https://cryptokittydex.com/cattributes/{tag}?page={page}".format(tag=tag,page=i)
-            r = requests.get(url,headers=headers)
+            url = "https://www.cryptokitties.co/marketplace/sale/{0}".format(i)
+            driver.get(url)
+            time.sleep(5)
+            htmlSource = driver.page_source
+            print BeautifulSoup(htmlSource)
+            break
 
 
 def quickScrape():
@@ -208,9 +210,12 @@ def tosql():
 
 
 if __name__ == "__main__":
-    quickScrape()
+    #quickScrape()
     #tosql()
-    #ks = KittyScratcher()
+    ks = KittyScratcher()
+    ks.scrapeMarketPlace()
+
+
     #ks.getTagCats('royalblue')
     #print ks.savePage(298)
     #ks.getInfo(23201)
