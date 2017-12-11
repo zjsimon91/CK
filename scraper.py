@@ -129,7 +129,19 @@ class KittyScratcher:
 
         time.sleep(10)
         for each in cats:
-            ks.savePage(each)
+            self.savePage(each)
+
+    def scrapeMarketPlace(self,pages=1):
+        headers = {
+            'User-Agent': userAgent(),
+            'From': 'youremail@domain.com'  # This is another valid field
+        }
+
+        cats = []
+        for i in range(1,pages+1):
+            url = "https://cryptokittydex.com/cattributes/{tag}?page={page}".format(tag=tag,page=i)
+            r = requests.get(url,headers=headers)
+
 
 def quickScrape():
         ks = KittyScratcher()
@@ -148,6 +160,11 @@ def quickScrape():
             try:
                 checkList = conn.getFrame(q)['parent'].values
                 finishedList = list(ks.ids)
+
+                if len(checkList)==0:
+                    checkList = [random()*100000 for i in range(2000)]
+                    shuffle(checkList)
+                print len(checkList),"starting scrape loop"
                 for each in checkList:
                     r =  ks.savePage(each)
             except Exception, e:
@@ -191,9 +208,9 @@ def tosql():
 
 
 if __name__ == "__main__":
-    #quickScrape()
-    tosql()
-    ks = KittyScratcher()
+    quickScrape()
+    #tosql()
+    #ks = KittyScratcher()
     #ks.getTagCats('royalblue')
     #print ks.savePage(298)
     #ks.getInfo(23201)

@@ -8,4 +8,7 @@ if __name__ == "__main__":
     df['parents'] = df.apply(lambda x:(int(x['x']),int(x['y'])),axis=1)
     piv = df.set_index(['digit','parents'])['prob'].unstack()
 
-    piv.to_csv('probabilities.csv')
+    tags = gen.runFile('tagBits.txt').set_index(['digit','tag'])['value'].unstack()
+    data = piv.join(tags)
+
+    data.to_csv('probabilities.csv')

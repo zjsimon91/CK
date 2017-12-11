@@ -1,0 +1,21 @@
+SELECT
+  t.tag,
+  g.digit,
+  sum(value = 1) AS ones,
+  CASE WHEN sum(value = 1) = 0
+    THEN 0
+  ELSE 1 END as value
+FROM crypto.tags t
+  INNER JOIN crypto.genetics g
+    ON g.cat_id = t.cat_id
+WHERE t.tag IN ('royalblue',
+                'wingtips'
+                'mainecoon',
+                'jaguar',
+                'whixtensions',
+                'cerulian',
+                'chartreux',
+                'fabulous',
+                'peach')
+GROUP BY 1, 2
+HAVING ones = count(1) OR ones = 0
