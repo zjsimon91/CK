@@ -74,10 +74,14 @@ class KittyScratcher:
         d['tags'] = [each.text for each in info[-1].find_all("a")]
 
         sales = soup.find('h4', text="Sale history").find_next_siblings('table')
-        sales = sales[0].find_all('tr')[-1]
-        price,date = sales.find_all('td')
-        d['last_price'] = re.search('\d+\.\d+',price.text).group(0)
-        d['last_time_sold'] = datetime.datetime.strptime(clean(date.text),'%b. %d, %Y,  %H:%M %p UTC')
+        if sales:
+            sales = sales[0].find_all('tr')[-1]
+            price,date = sales.find_all('td')
+            d['last_price'] = re.search('\d+\.\d+',price.text).group(0)
+            d['last_time_sold'] = str(datetime.datetime.strptime(clean(date.text),'%b. %d, %Y,  %H:%M %p UTC'))
+        else:
+            d['last_price'] = 0
+            d['last_time_sold'] = str(datetime.datetime(1970,1,1))
         return d
 
     def savePage(self,id):
@@ -222,5 +226,5 @@ if __name__ == "__main__":
 
 
     #ks.getTagCats('royalblue')
-    #print ks.savePage(206991)
-    print ks.getInfo(206991)
+    #print ks.savePage(1999)
+    print ks.getInfo(1999)
