@@ -2,6 +2,8 @@ __author__ = 'zjsimon'
 from mysqlConn import MySqlConn
 import os, pandas as pd, sqlparse
 from datetime import datetime
+import statsmodels.formula.api as sm
+
 
 
 class CatGenome():
@@ -26,4 +28,20 @@ def popHeritage():
 
 
 if __name__ == "__main__":
-    popHeritage()
+    # popHeritage()
+    q = """SELECT c.generation,x.generation x, y.generation y
+    FROM crypto.cat c
+      INNER JOIN crypto.cat x
+        ON c.parent_x = x.id
+      INNER JOIN crypto.cat y
+        ON c.parent_y = y.id"""
+
+    conn = MySqlConn()
+    df = conn.getFrame(q)
+    df.to_csv('generations.csv')
+
+
+    result = sm.ols(formula="generation ~ x + y", data=df).fit()
+    print result.params
+    print result.summary()
+
