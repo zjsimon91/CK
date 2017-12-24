@@ -50,7 +50,9 @@ class KittyScratcher:
         return r
 
     def getInfo(self, id):
+        t = self.getSite(id)
         t = open("Pages/{id}.html".format(id=id), 'r').read()
+
         soup = BeautifulSoup(t, "lxml")
         d = {"id": id}
 
@@ -76,17 +78,20 @@ class KittyScratcher:
         d['tags'] = [each.text for each in info[-1].find_all("a")]
 
         sales = soup.find('h4', text="Sale history").find_next_siblings('table')
-        if sales:
-            sales = sales[0].find_all('tr')[-1]
-            price, date = sales.find_all('td')
-            d['last_price'] = re.search('\d+\.\d+', price.text).group(0)
-            d['last_time_sold'] = str(datetime.datetime.strptime(clean(date.text), '%b. %d, %Y,  %H:%M %p UTC'))
-        else:
-            d['last_price'] = 0
-            d['last_time_sold'] = str(datetime.datetime(1970, 1, 1))
+        try:
+            if sales:
+                sales = sales[0].find_all('tr')[-1]
+                price, date = sales.find_all('td')
+                d['last_price'] = re.search('\d+\.\d+', price.text).group(0)
+                d['last_time_sold'] = str(datetime.datetime.strptime(clean(date.text), '%b. %d, %Y,  %H:%M %p UTC'))
+            else:
+                d['last_price'] = 0
+                d['last_time_sold'] = str(datetime.datetime(1970, 1, 1))
+        except:
+            pass
         return d
 
-    def savePage(self, id):
+    def savePage(self, id, recursive=0):
         if id in self.ids:
             print "saved"
             return ""
@@ -102,6 +107,8 @@ class KittyScratcher:
             print code
             print r.text
             time.sleep(20)
+            if 0 < recursive <= 3:
+                return self.savePage(id, recursive=recursive + 1)
         return r
 
     def prepMainTable(self, d):
@@ -146,6 +153,7 @@ class KittyScratcher:
 
     def scrapeMarketPlace(self, pages=3):
         driver = webdriver.Chrome(executable_path=r'/Users/admin/Desktop/PythonWork/chromedriver')
+        conn = MySqlConn()
         cats = []
         for i in range(1, pages + 1):
             url = "https://www.cryptokitties.co/marketplace/sale/{0}".format(i)
@@ -153,20 +161,22 @@ class KittyScratcher:
             driver.get(url)
             time.sleep(5)
             htmlSource = driver.page_source
-            soup =  BeautifulSoup(htmlSource,'lxml')
-            grid = soup.find('div',class_="KittiesGrid")
-            cats = grid.find_all('div',class_="KittiesGrid-item")
-            for each in cats:
-                print ks.parseBid(each)
+            soup = BeautifulSoup(htmlSource, 'lxml')
+            grid = soup.find('div', class_="KittiesGrid")
+            cats = grid.find_all('div', class_="KittiesGrid-item")
+            df = pd.DataFrame([ks.parseBid(each) for each in cats])
+            conn.insertDF(df, 'crypto.marketplace', 'REPLACE')
+            conn.db.commit()
 
-    def parseBid(self,s):
-        status = s.find('div',class_="KittyCard-status")
-        price = status.find('span',class_="KittyStatus-note")
+    def parseBid(self, s):
+        status = s.find('div', class_="KittyCard-status")
+        price = status.find('span', class_="KittyStatus-note")
         price = re.search('\d+\.\d+', price.text).group(0)
-        cooldown = s.find('div',class_="KittyCard-coldown").text
-        details = s.find('div',class_="KittyCard-subname").text.split()
-        id,gen = map(int,[details[1],details[-1]])
-        return {'id':id,"generation":gen,"cooldown":cooldown,"price":price}
+        cooldown = s.find('div', class_="KittyCard-coldown").text
+        details = s.find('div', class_="KittyCard-subname").text.split()
+        id, gen = map(int, [details[1], details[-1]])
+        return {'id': id, "generation": gen, "cooldown": cooldown, "price": price}
+
 
 def quickScrape():
     ks = KittyScratcher()
@@ -201,16 +211,18 @@ def quickScrape():
 
 def tosql():
     ks = KittyScratcher()
-    f = open('data.json', 'w')
     conn = MySqlConn()
+    ids = conn.getFrame("""SELECT id from crypto.marketplace m
+                            LEFT JOIN crypto.cat c USING (id)
+                            WHERE c.id is NULL;""")['id'].values
+    print ids
 
-    ids = set(ks.ids) - set(conn.getFrame("SELECT id from crypto.cat")['id'])
-    print len(ids)
     for each in iter_grouper(500, ids):
         s = datetime.datetime.now()
         cat, genetics, tags = [], [], []
         for id in each:
             try:
+                ks.savePage(id,1)
                 info = ks.getInfo(id)
             except Exception, e:
                 print id
@@ -235,11 +247,15 @@ def tosql():
 
 if __name__ == "__main__":
     # quickScrape()
-    # tosql()
-    ks = KittyScratcher()
-    ks.scrapeMarketPlace()
+    tosql()
+    # ks = KittyScratcher()
+    # ks.scrapeMarketPlace(2)
 
 
-    # ks.getTagCats('royalblue')
+
+    # r = requests.get("https://api.cryptokitties.co/kitties/123606")
+    # print r.json()
+
+    # ks.getTagCats('mainecoon',5)
     # print ks.savePage(1999)
     # print ks.getInfo(1999)

@@ -1,0 +1,7 @@
+SELECT
+  m.id,
+  digit,
+  value
+FROM crypto.marketplace m
+  INNER JOIN crypto.genetics g
+    ON m.id = g.cat_id;

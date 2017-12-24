@@ -4,11 +4,16 @@ import pandas as pd
 
 if __name__ == "__main__":
     gen = CatGenome()
-    df = gen.runFile('genProb.txt')
-    df['parents'] = df.apply(lambda x:(int(x['x']),int(x['y'])),axis=1)
-    piv = df.set_index(['digit','parents'])['prob'].unstack()
+    traits = gen.runFile('tagBits.txt')
+    prices = gen.conn.getFrame("SELECT * FROM crypto.marketplace m;")
+    potCats = gen.runFile('marketplaceGenetics.txt')
+    probs = gen.runFile('genProb.txt').fillna(0)
+    print probs
 
-    tags = gen.runFile('tagBits.txt').set_index(['digit','tag'])['value'].unstack()
-    data = piv.join(tags)
+    d = {"traits": traits,
+         "prices": prices,
+         "cats":potCats,
+         "prob": probs}
 
-    data.to_csv('probabilities.csv')
+    for k,v in d.iteritems():
+        v.to_csv('JuliaData/{0}.csv'.format(k),index=False)

@@ -16,7 +16,7 @@ class MySqlConn:
     def getFrame(self,q):
         return pd.read_sql(q, con=self.db)
 
-    def insertDF(self,df,table):
+    def insertDF(self,df,table,ins="INSERT"):
         headers = df.columns
         cols = ", ".join(["`{0}`".format(each) for each in df.columns])
 
@@ -29,11 +29,11 @@ class MySqlConn:
 
 
         q = """
-        INSERT INTO {table}
+        {ins} INTO {table}
         ({cols})
         Values
         {data};
-        """.format(table=table,cols=cols,data=vals)
+        """.format(table=table,cols=cols,data=vals,ins = ins)
         self.safeExecute(q)
 
     def safeExecute(self,q):

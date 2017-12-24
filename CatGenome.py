@@ -28,7 +28,11 @@ def popHeritage():
 
 
 if __name__ == "__main__":
-    # popHeritage()
+    popHeritage()
+    quit()
+
+
+
     q = """SELECT c.generation,x.generation x, y.generation y
     FROM crypto.cat c
       INNER JOIN crypto.cat x
@@ -44,4 +48,3 @@ if __name__ == "__main__":
     result = sm.ols(formula="generation ~ x + y", data=df).fit()
     print result.params
     print result.summary()
-

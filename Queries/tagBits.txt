@@ -1,21 +1,24 @@
+
+DROP TEMPORARY TABLE IF EXISTS generic_dna;
+CREATE TEMPORARY TABLE generic_dna
+    SELECT
+      digit,
+      count(DISTINCT value) c
+    FROM crypto.genetics
+    GROUP BY 1
+    HAVING c = 1;
+
 SELECT
   t.tag,
   g.digit,
   sum(value = 1) AS ones,
   CASE WHEN sum(value = 1) = 0
     THEN 0
-  ELSE 1 END as value
+  ELSE 1 END     AS value
 FROM crypto.tags t
   INNER JOIN crypto.genetics g
     ON g.cat_id = t.cat_id
-WHERE t.tag IN ('royalblue',
-                'wingtips'
-                'mainecoon',
-                'jaguar',
-                'whixtensions',
-                'cerulian',
-                'chartreux',
-                'fabulous',
-                'peach')
+WHERE t.tag IN ('mainecoon', 'royalblue', 'jaguar', 'wingtips', 'mintgreen', 'orangesoda', 'chocolate')
+  and g.digit not in (SELECT digit from generic_dna)
 GROUP BY 1, 2
-HAVING ones = count(1) OR ones = 0
+HAVING ones = count(1) OR ones = 0;
